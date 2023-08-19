@@ -6,144 +6,145 @@ package calculadora;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Lina Castiblanco
- */
 public class Calculadora {
 
     public static void main(String[] args) {
-       Scanner leer = new Scanner (System.in);
-     
-        while (true){
-        System.out.println("Calculadora: ");
-        System.out.println("1. Suma ");
-        System.out.println("2. Resta ");
-        System.out.println("3. Multiplicacion ");
-        System.out.println("4. Division ");
-        System.out.println("5. Seno ");
-        System.out.println("6. Coseno ");
-        System.out.println("7. Tangente ");
-        System.out.println("8. Raiz ");
-        System.out.println("9. Potencia ");
-        System.out.println("10. IVA ");
-        System.out.println("11. Salir ");
-        System.out.println("Sleccionar una opcion: ");
-            
-        int opcion = leer.nextInt();
-       
-        if(opcion == 11){
-            System.out.println("Saliendo... ");
-            break;
-        }
-        double r = 0;
-       
-        switch(opcion){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Calculadora - Funciones disponibles:");
+        System.out.println("1. Suma");
+        System.out.println("2. Resta");
+        System.out.println("3. Multiplicacion");
+        System.out.println("4. Division");
+        System.out.println("5. Seno");
+        System.out.println("6. Coseno");
+        System.out.println("7. Tangente");
+        System.out.println("8. Raiz enesima");
+        System.out.println("9. Potencia enesima");
+        System.out.println("10. Calcular porcentaje de IVA");
+
+        System.out.print("Ingrese el numero de la operacion deseada: ");
+        int opcion = scanner.nextInt();
+
+        double resultado = 0;
+
+        switch (opcion) {
             case 1:
-                r = sumar(leer);
+                resultado = sumar(scanner);
                 break;
             case 2:
-                r = restar(leer);
+                resultado = restar(scanner);
                 break;
             case 3:
-                r = multiplicar(leer);
+                resultado = multiplicar(scanner);
                 break;
             case 4:
-                r = dividir(leer);
+                resultado = dividir(scanner);
                 break;
-                case 5:
-                r = seno(leer);
+            case 5:
+                resultado = seno(scanner);
                 break;
             case 6:
-                r = coseno(leer);
+                resultado = coseno(scanner);
                 break;
             case 7:
-                r = tangente(leer);
+                resultado = tangente(scanner);
                 break;
             case 8:
-                r = raiz(leer);
+                resultado = raizEnesima(scanner);
                 break;
             case 9:
-                r = potencia(leer);
+                resultado = potenciaEnesima(scanner);
                 break;
             case 10:
-                r = IVA(leer);
+                resultado = calcularPorcentajeIVA(scanner);
                 break;
             default:
-                System.out.println("Opcion invalida");
-                continue;
+                System.out.println("Opcion no valida");
+                return;
         }
-        System.out.println("El resultado es: "+r);
-        }
-        leer.close();
+
+        System.out.println("El resultado es: " + resultado);
     }
-    public static double sumar(Scanner leer) {
-        System.out.print("Ingrese el primer número: ");
-        double num1 = leer.nextDouble();
-        System.out.print("Ingrese el segundo número: ");
-        double num2 = leer.nextDouble();
+
+    private static double sumar(Scanner scanner) {
+        System.out.print("Ingrese el primer numero: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Ingrese el segundo numero: ");
+        double num2 = scanner.nextDouble();
         return num1 + num2;
     }
-    public static double restar(Scanner leer) {
-        System.out.print("Ingrese el primer número: ");
-        double num1 = leer.nextDouble();
-        System.out.print("Ingrese el segundo número: ");
-        double num2 = leer.nextDouble();
+
+    private static double restar(Scanner scanner) {
+        System.out.print("Ingrese el primer numero: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Ingrese el segundo numero: ");
+        double num2 = scanner.nextDouble();
         return num1 - num2;
     }
-     public static double multiplicar(Scanner leer) {
-        System.out.print("Ingrese el primer número: ");
-        double num1 = leer.nextDouble();
-        System.out.print("Ingrese el segundo número: ");
-        double num2 = leer.nextDouble();
+
+    private static double multiplicar(Scanner scanner) {
+        System.out.print("Ingrese el primer numero: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Ingrese el segundo numero: ");
+        double num2 = scanner.nextDouble();
         return num1 * num2;
     }
-     public static double dividir(Scanner leer) {
+
+    private static double dividir(Scanner scanner) {
         System.out.print("Ingrese el dividendo: ");
-        double dividendo = leer.nextDouble();
+        double dividendo = scanner.nextDouble();
         System.out.print("Ingrese el divisor: ");
-        double divisor = leer.nextDouble();
-       
-         if (divisor == 0) {
+        double divisor = scanner.nextDouble();
+        
+        if (divisor == 0) {
             System.out.println("Error: No se puede dividir por cero.");
             return 0;
-         }
-         return dividendo / divisor;
-     }
-     public static double seno(Scanner leer) {
-        System.out.print("Ingrese el ángulo en grados: ");
-        double angulo = Math.toRadians(leer.nextDouble());
-        return Math.sin(angulo);
-     }
-     public static double coseno(Scanner leer) {
-        System.out.print("Ingrese el ángulo en grados: ");
-        double angulo = Math.toRadians(leer.nextDouble());
-        return Math.cos(angulo);
+        }
+        
+        return dividendo / divisor;
     }
-     public static double tangente(Scanner leer) {
-        System.out.print("Ingrese el ángulo en grados: ");
-        double angulo = Math.toRadians(leer.nextDouble());
-        return Math.tan(angulo);
+
+    private static double seno(Scanner scanner) {
+        System.out.print("Ingrese el valor del angulo en grados: ");
+        double angulo = scanner.nextDouble();
+        return Math.sin(Math.toRadians(angulo));
     }
-     public static double raiz(Scanner leer) {
-        System.out.print("Ingrese el número: ");
-        double numero = leer.nextDouble();
-        System.out.print("Ingrese el índice de la raíz: ");
-        double indice = leer.nextDouble();
+
+    private static double coseno(Scanner scanner) {
+        System.out.print("Ingrese el valor del angulo en grados: ");
+        double angulo = scanner.nextDouble();
+        return Math.cos(Math.toRadians(angulo));
+    }
+
+    private static double tangente(Scanner scanner) {
+        System.out.print("Ingrese el valor del angulo en grados: ");
+        double angulo = scanner.nextDouble();
+        return Math.tan(Math.toRadians(angulo));
+    }
+
+    private static double raizEnesima(Scanner scanner) {
+        System.out.print("Ingrese el valor al que desea calcular la raiz: ");
+        double numero = scanner.nextDouble();
+        System.out.print("Ingrese el indice de la raiz: ");
+        double indice = scanner.nextDouble();
         return Math.pow(numero, 1.0 / indice);
-     }
-     public static double potencia(Scanner leer) {
-        System.out.print("Ingrese el número: ");
-        double numero = leer.nextDouble();
-        System.out.print("Ingrese el exponente: ");
-        double exponente = leer.nextDouble();
-        return Math.pow(numero, exponente);
     }
-    public static double IVA(Scanner leer) {
-        System.out.print("Ingrese el valor: ");
-        double valor = leer.nextDouble();
+
+    private static double potenciaEnesima(Scanner scanner) {
+        System.out.print("Ingrese la base: ");
+        double base = scanner.nextDouble();
+        System.out.print("Ingrese el exponente: ");
+        double exponente = scanner.nextDouble();
+        return Math.pow(base, exponente);
+    }
+
+    private static double calcularPorcentajeIVA(Scanner scanner) {
+        System.out.print("Ingrese el monto: ");
+        double monto = scanner.nextDouble();
         System.out.print("Ingrese el porcentaje de IVA: ");
-        double porcentajeIVA = leer.nextDouble();
-        return valor * (porcentajeIVA / 80);
+        double porcentajeIVA = scanner.nextDouble();
+        return monto * (1 + porcentajeIVA / 100);
     }
 }
+
